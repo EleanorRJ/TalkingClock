@@ -13,6 +13,10 @@ public class ClockMain {
 			if (digitalTime.isEmpty()) {
 				break;
 			}
+			//Check the input is valid
+			if (!(digitalTime.length() == 5 && digitalTime.charAt(2) == ':')) {
+				System.out.println("Incorrect input format. Use the 24hr digital format e.g. 09:05, 21:47");
+			}
 			
 			//Split hours and minutes
 			String[] splits = digitalTime.split(":");

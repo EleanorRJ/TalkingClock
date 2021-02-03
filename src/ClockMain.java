@@ -13,16 +13,29 @@ public class ClockMain {
 			if (digitalTime.isEmpty()) {
 				break;
 			}
-			//Check the input is valid
+			//Check the input is in the correct format
 			if (!(digitalTime.length() == 5 && digitalTime.charAt(2) == ':')) {
 				System.out.println("Incorrect input format. Use the 24hr digital format e.g. 09:05, 21:47");
+				continue;
 			}
 			
 			//Split hours and minutes
 			String[] splits = digitalTime.split(":");
+			
+			//Check if hours and minutes are strings containing numbers
+			if (isItNumeric(splits[0]) == false) {
+				System.out.println("You must not enter any letters.");
+				continue;
+			}
+			if (isItNumeric(splits[1]) == false) {
+				System.out.println("You must not enter any letters.");
+				continue;
+			}
+			
+			//Convert strings to integers
 			int hours = Integer.valueOf(splits[0]);
 			int minutes = Integer.valueOf(splits[1]);
-		
+			
 			//Initiate SpokenTime object ready to use its methods and add values
 			SpokenTime outputTime = new SpokenTime();
 		
@@ -35,5 +48,14 @@ public class ClockMain {
 		}
 		
 	}
+	
+	public static boolean isItNumeric(String str) { 
+		  try {  
+		    Integer.parseInt(str);  
+		    return true;
+		  } catch(NumberFormatException e){  
+		    return false;  
+		  }  
+		}
 	
 }
